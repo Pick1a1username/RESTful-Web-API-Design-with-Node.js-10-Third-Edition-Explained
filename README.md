@@ -1,31 +1,19 @@
-# RESTful Web API Design with Node.js 10 - Third Edition
-This is the code repository for [RESTful Web API Design with Node.js 10 - Third Edition](https://www.packtpub.com/web-development/restful-web-api-design-nodejs-10-third-edition?utm_source=github&utm_medium=repository&utm_campaign=9781788623322), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the book from start to finish.
-## About the Book
-This book targets developers who want to enrich their development skills by learning how
-to develop scalable, server-side, RESTful applications based on the Node.js platform. You
-also need to be aware of HTTP communication concepts and should have a working
-knowledge of the JavaScript language. Keep in mind that this is not a book that will teach
-you how to program in JavaScript. Knowledge of REST will be an added advantage but is
-definitely not a necessity.
-## Instructions and Navigation
-All of the code is organized into folders. Each folder starts with a number followed by the application name. For example, Chapter02.
+# RESTful Web API Design with Node.js 10 - Third Edition: Explained
 
+This repository contains additional information for [the original repository](https://github.com/PacktPublishing/RESTful-Web-API-Design-with-Node.js-10-Third-Edition/tree/82686af8b4a37ec40138102ede084948f11ad131).
 
+## Objectives
 
-The code will look like the following:
-```
-router.get('/v1/item/:itemId', function(request, response, next) {
- console.log(request.url + ' : querying for ' + request.params.itemId);
- catalogV1.findItemById(request.params.itemId, response);
-});
-router.get('/v1/:categoryId', function(request, response, next) {
- console.log(request.url + ' : querying for ' +
-request.params.categoryId);
- catalogV1.findItemsByCategory(request.params.categoryId, response);
-});
-```
+I'd like to add the following information:
 
-## Related Products
-* [Mastering Node.js - Second Edition](https://www.packtpub.com/web-development/mastering-nodejs-second-edition?utm_source=github&utm_medium=repository&utm_campaign=9781785888960)
+* API Documentation in Each Chapter
+  * So that you can easily track the status of your app.
+* How to Test Your App with Docker
+  * So that you can easily test your app.
+  * This includes how to setup Mongo DB for test as well.
 
-* [Learning Node.js Development](https://www.packtpub.com/web-development/learning-nodejs-development?utm_source=github&utm_medium=repository&utm_campaign=9781788395540)
+And moreover:
+
+* Remove `.txt` from filenames.
+* Include `package.json` and `package-lock.json`.
+  * Even though most of packages are installed globally, I'd like to install packages locally as much as possible.
