@@ -48,6 +48,10 @@ function handleRequest(request, response) {
   console.log('Request processing completed');
 }
 
-http.createServer(handleRequest).listen(8180, '127.0.0.1', () => {
-  console.log('Started Node.js http server at http://127.0.0.1:8180');
+/**
+ * The host parameter is changed to `0.0.0.0` so that the app
+ * can be accessed outside of container.
+ */
+http.createServer(handleRequest).listen(8180, '0.0.0.0', () => {
+  console.log('Started Node.js http server at http://0.0.0.0:8180');
 });
