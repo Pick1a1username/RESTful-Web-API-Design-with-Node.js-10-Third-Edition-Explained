@@ -12,9 +12,9 @@ $ node www/bin
 
 | Method | URI                                 | Description                                                  |
 |--------|-------------------------------------|--------------------------------------------------------------|
-| `Get`  | `/category`                         | Retrieves all available categories in the catalog.           |
-| `Get`  | `/category/{category-id}/`          | Retrieves all the items available under a specific category. |
-| `Get`  | `/category/{category-id}/{item-id}` | Retrieves an item by its ID under a specific category.       |
+| `Get`  | `/catalog`                         | Retrieves all available categories in the catalog.           |
+| `Get`  | `/catalog/{category-id}/`          | Retrieves all the items available under a specific category. |
+| `Get`  | `/catalog/{category-id}/{item-id}` | Retrieves an item by its ID under a specific category.       |
 
 ## Swagger UI
 
