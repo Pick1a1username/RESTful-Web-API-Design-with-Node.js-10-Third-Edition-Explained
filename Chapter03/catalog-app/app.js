@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./static/swagger.json');
+
 var indexRouter = require('./routes/index');
 var catalogRouter = require('./routes/catalog');
 
@@ -20,7 +23,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+// '/catalog/api-docs' should be before '/catalog'.
+app.use('/catalog/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/catalog', catalogRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
