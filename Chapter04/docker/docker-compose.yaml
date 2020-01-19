@@ -12,14 +12,14 @@ services:
       - ../app:/root/app
     
   mongo:
-    image: mongo
+    image: mongo:3.4.23-xenial
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongoadmin
       MONGO_INITDB_ROOT_PASSWORD: thisispassword
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:0.49.0
     restart: always
     ports:
       - 8081:8081
