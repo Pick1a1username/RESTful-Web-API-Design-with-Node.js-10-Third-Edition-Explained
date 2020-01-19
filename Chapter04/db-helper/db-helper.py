@@ -1,4 +1,4 @@
-#!venv/bin/python
+#!/usr/local/bin/python
 
 import json
 import sys
@@ -14,7 +14,7 @@ def main():
         import_data = json.loads(reader.read())
 
     # Connect.
-    client = MongoClient('localhost', 27017, username='mongoadmin', password='thisispassword')
+    client = MongoClient('mongo', 27017, username='mongoadmin', password='thisispassword')
 
     # Create a db named 'catalog'.
     db = client['catalog']

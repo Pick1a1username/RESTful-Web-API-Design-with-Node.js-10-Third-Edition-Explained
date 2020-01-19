@@ -2,6 +2,14 @@ version: '3.1'
 
 services:
 
+  pymongo:
+    image: pymongo:0.1
+    restart: always
+    volumes:
+      - ../db-helper/db-helper.py:/app/db-helper.py
+      - ../db-helper/data.json:/app/data.json
+    command: tail -f /dev/null
+    
   mongo:
     image: mongo:3.4.23-xenial
     restart: always
