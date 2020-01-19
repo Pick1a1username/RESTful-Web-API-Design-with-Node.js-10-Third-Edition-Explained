@@ -7,7 +7,7 @@ var prepare = require('./prepare');
 const model = require('../model/item.js');
 const CatalogItem = model.CatalogItem;
 
-mongoose.createConnection('mongodb://localhost/catalog');
+mongoose.createConnection('mongodb://catalog_admin:some_password@mongo/catalog');
 
 
 describe('CatalogItem: models', function () {

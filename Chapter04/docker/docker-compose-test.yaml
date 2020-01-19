@@ -9,6 +9,15 @@ services:
       - ../db-helper/db-helper.py:/app/db-helper.py
       - ../db-helper/data.json:/app/data.json
     command: tail -f /dev/null
+
+  node:
+    image: node:10-jessie
+    restart: always
+    command: ["tail", "-f", "/dev/null"]
+    ports:
+      - 3000:3000
+    volumes:
+      - ../app:/root/app
     
   mongo:
     image: mongo:3.4.23-xenial

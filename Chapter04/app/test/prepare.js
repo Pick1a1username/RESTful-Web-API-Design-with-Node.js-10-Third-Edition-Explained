@@ -9,7 +9,8 @@ beforeEach(function (done) {
 	}
 
   if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.db.test, function (err) {
+    // I have no idea why config.db.test is used.
+    mongoose.connect('mongodb://catalog_admin:some_password@mongo/catalog', function (err) {
       if (err) {
         throw err;
       }
