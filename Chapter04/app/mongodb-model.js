@@ -11,7 +11,7 @@ var itemSchema = new Schema ({
 
 var CatalogItem = mongoose.model('Item', itemSchema);
 
-mongoose.connect('mongodb://localhost/catalog');
+mongoose.connect('mongodb://catalog_admin:some_password@mongo/catalog');
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));

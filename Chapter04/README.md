@@ -44,11 +44,12 @@ $ docker exec -it docker_node_1 bash
 | Method   | URI                       | Description                                                  |
 |----------|---------------------------|--------------------------------------------------------------|
 | `Get`    | `/catalog`                | Retrieves all available categories in the catalog.           |
-| `Get`    | `/catalog/item/{item-id}` | Retrieves an item by its ID.                                 |
-| `Get`    | `/catalog/{category-id}`  | Retrieves all the items available under a specific category. |
 | `Post`   | `/catalog`                | Saves or updates an item.                                    |
 | `Put`    | `/catalog`                | Saves or updates an item.                                    |
-| `Delete` | `/item/{item-id}`         | Removes an item                                              |
+| `Get`    | `/catalog/item/{item-id}` | Retrieves an item by its ID.                                 |
+| `Delete` | `/catalog/item/{item-id}`         | Removes an item               
+| `Get`    | `/catalog/{category}`  | Retrieves all the items available under a specific category. |
+                               |
 
 
 ## Swagger UI

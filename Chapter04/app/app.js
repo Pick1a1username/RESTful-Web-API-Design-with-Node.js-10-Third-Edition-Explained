@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./static/swagger.json');
+
 var routes = require('./routes/index');
 var catalog = require('./routes/catalog');
 
@@ -23,7 +26,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/catalog/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/catalog', catalog);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,6 +50,9 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
+
+
 
 // production error handler
 // no stacktraces leaked to user
