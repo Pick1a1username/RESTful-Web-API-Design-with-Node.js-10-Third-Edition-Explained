@@ -65,7 +65,6 @@ exports.findItemsByCategory = function (category, response) {
 				response.setHeader('Content-Type', 'application/json');
 				response.send(result);
 			}
-			console.log(result);
 		}
 	});
 }
