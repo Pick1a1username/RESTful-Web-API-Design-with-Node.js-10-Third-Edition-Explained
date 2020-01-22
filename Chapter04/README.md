@@ -65,8 +65,10 @@ $ docker exec -it docker_node_1 bash
 | `Get`    | `/catalog/{categoryName}` | Retrieves all the items available under a specific category. |
 
 
-
 ## Swagger UI
+
+Go to `http://localhost:3000/catalog/api-docs` after launching the app.
+
 
 ## Notes
 
