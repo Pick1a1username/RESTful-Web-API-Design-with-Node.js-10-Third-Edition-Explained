@@ -1,295 +1,228 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "title": "Catalog API Documentation",
-      "version": "v1"
+  "swagger": "2.0",
+  "info": {
+    "title": "Catalog API Documentation",
+    "version": "v1"
+  },
+  "paths": {
+    "/catalog": {
+      "get": {
+        "operationId": "retrieveAllCategories",
+        "summary": "Retrieves all available categories in the catalog ",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": [
+                {
+                  "categories": [
+                    "Watches"
+                  ],
+                  "_id": "5e259f8d051ed2bbd94cb3b0",
+                  "itemId": "3",
+                  "itemName": "Sports Watch 11",
+                  "price": 99,
+                  "currency": "USD"
+                },
+                {
+                  "categories": [
+                    "Watches",
+                    "Sports Watches"
+                  ],
+                  "_id": "5e259f8d051ed2bbd94cb3b1",
+                  "itemId": "9",
+                  "itemName": "Sports Watch 4",
+                  "price": 100,
+                  "currency": "EUR"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "operationId": "saveItemPost",
+        "summary": "Saves or updates an item.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "type": "string",
+            "description": "Item's ID"
+          },
+          {
+            "in": "query",
+            "name": "itemName",
+            "required": true,
+            "type": "string",
+            "description": "Item's Name"
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": true,
+            "type": "number",
+            "description": "Item's Price"
+          },
+          {
+            "in": "query",
+            "name": "currency",
+            "required": true,
+            "type": "string",
+            "description": "Item's Currency"
+          },
+          {
+            "in": "query",
+            "name": "categories",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Item's categories"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": [
+                {
+                  "categoryId": "1",
+                  "categoryName": "Watches"
+                },
+                {
+                  "categoryId": "2",
+                  "categoryName": "Cars"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "operationId": "saveItemPut",
+        "summary": "Saves or updates an item.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "itemId",
+            "required": true,
+            "type": "string",
+            "description": "Item's ID"
+          },
+          {
+            "in": "query",
+            "name": "itemName",
+            "required": true,
+            "type": "string",
+            "description": "Item's Name"
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": true,
+            "type": "number",
+            "description": "Item's Price"
+          },
+          {
+            "in": "query",
+            "name": "currency",
+            "required": true,
+            "type": "string",
+            "description": "Item's Currency"
+          },
+          {
+            "in": "query",
+            "name": "categories",
+            "required": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Item's categories"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": [
+                {
+                  "categoryId": "1",
+                  "categoryName": "Watches"
+                },
+                {
+                  "categoryId": "2",
+                  "categoryName": "Cars"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
+          }
+        }
+      }
     },
-    "paths": {
-      "/catalog": {
-        "get": {
-          "operationId": "retrieveAllCategories",
-          "summary": "Retrieves all available categories in the catalog ",
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": [
-                  {
-                    "categories": [
-                      "Watches"
-                    ],
-                    "_id": "5e259f8d051ed2bbd94cb3b0",
-                    "itemId": "3",
-                    "itemName": "Sports Watch 11",
-                    "price": 99,
-                    "currency": "USD"
-                  },
-                  {
-                    "categories": [
-                      "Watches",
-                      "Sports Watches"
-                    ],
-                    "_id": "5e259f8d051ed2bbd94cb3b1",
-                    "itemId": "9",
-                    "itemName": "Sports Watch 4",
-                    "price": 100,
-                    "currency": "EUR"
-                  }
-                ]
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
-            }
+    "/catalog/{categoryName}": {
+      "get": {
+        "operationId": "retrieveAllItemsByCategory",
+        "summary": "Retrieves all the items available under a specific category ",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "categoryName",
+            "required": true,
+            "type": "string",
+            "description": "Category's name"
           }
-        },
-        "post": {
-          "operationId": "saveItem",
-          "summary": "Saves or updates an item.",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "itemId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's ID"
-            },
-            {
-              "in": "query",
-              "name": "itemName",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's Name"
-            },
-            {
-              "in": "query",
-              "name": "price",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "description": "Item's Price"
-            },
-            {
-              "in": "query",
-              "name": "currency",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's Currency"
-            },
-            {
-              "in": "query",
-              "name": "categories",
-              "required": true,
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "description": "Item's categories"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": [
-                  {
-                    "categoryId" : "1",
-                    "categoryName":"Watches"
-                  },
-                  {
-                    "categoryId":"2",
-                    "categoryName":"Cars"
-                  }
-                ]
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
-            }
-          }
-        },
-        "put": {
-          "operationId": "saveItem",
-          "summary": "Saves or updates an item.",
-          "parameters": [
-            {
-              "in": "query",
-              "name": "itemId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's ID"
-            },
-            {
-              "in": "query",
-              "name": "itemName",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's Name"
-            },
-            {
-              "in": "query",
-              "name": "price",
-              "required": true,
-              "schema": {
-                "type": "number"
-              },
-              "description": "Item's Price"
-            },
-            {
-              "in": "query",
-              "name": "currency",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's Currency"
-            },
-            {
-              "in": "query",
-              "name": "categories",
-              "required": true,
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "description": "Item's categories"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": [
-                  {
-                    "categoryId" : "1",
-                    "categoryName":"Watches"
-                  },
-                  {
-                    "categoryId":"2",
-                    "categoryName":"Cars"
-                  }
-                ]
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
-            }
-          }
-        }
-      },
-      "/catalog/{categoryName}": {
-        "get": {
-          "operationId": "retrieveAllItemsByCategory",
-          "summary": "Retrieves all the items available under a specific category ",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "categoryName",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Category's name"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": [
-                  {
-                    "categories": [
-                      "Watches",
-                      "Sports Watches"
-                    ],
-                    "_id": "5e259f8d051ed2bbd94cb3b1",
-                    "itemId": "9",
-                    "itemName": "Sports Watch 4",
-                    "price": 100,
-                    "currency": "EUR"
-                  },
-                  {
-                    "categories": [
-                      "Watches",
-                      "Sports Watches"
-                    ],
-                    "_id": "5e259f8d051ed2bbd94cb3b2",
-                    "itemId": "2",
-                    "itemName": "Sports Watch 2",
-                    "price": 100,
-                    "currency": "EUR"
-                  }
-                ]
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
-            }
-          }
-        }
-      },
-      "/catalog/item/{itemId}": {
-        "get": {
-          "operationId": "retrieveItem",
-          "summary": "Retrieves an item by its ID",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "itemId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's ID"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": {
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": [
+                {
+                  "categories": [
+                    "Watches",
+                    "Sports Watches"
+                  ],
+                  "_id": "5e259f8d051ed2bbd94cb3b1",
+                  "itemId": "9",
+                  "itemName": "Sports Watch 4",
+                  "price": 100,
+                  "currency": "EUR"
+                },
+                {
                   "categories": [
                     "Watches",
                     "Sports Watches"
@@ -300,101 +233,142 @@
                   "price": 100,
                   "currency": "EUR"
                 }
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
+              ]
             }
-          }
-        },
-        "delete": {
-          "operationId": "removeItem",
-          "summary": "Removes an item",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "itemId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's ID"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": {
-                  "Status": "Successfully deleted"
-                }
-              }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
-            }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
           }
         }
       }
     },
-      "/catalog/item/{itemId}": {
-        "get": {
-          "operationId": "retrieveItem",
-          "summary": "Retrieves an item by its ID",
-          "parameters": [
-            {
-              "in": "path",
-              "name": "categoryId",
-              "required": true,
-              "schema": {
-                "type": "integer"
-              },
-              "description": "Category's ID"
-            },
-            {
-              "in": "path",
-              "name": "itemId",
-              "required": true,
-              "schema": {
-                "type": "string"
-              },
-              "description": "Item's ID"
-            }
-          ],
-          "produces": [
-            "application/json"
-          ],
-          "responses": {
-            "200": {
-              "description": "200 OK",
-              "examples": {
-                "application/json": {
-                  "itemId" : "item-identifier-1",
-                  "itemName" : "Volkswagen Polo",
-                  "price" : 150000,
-                  "currency" : "EUR"
-                }
+    "/catalog/item/{itemId}": {
+      "get": {
+        "operationId": "retrieveItem",
+        "summary": "Retrieves an item by its ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "type": "string",
+            "description": "Item's ID"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": {
+                "categories": [
+                  "Watches",
+                  "Sports Watches"
+                ],
+                "_id": "5e259f8d051ed2bbd94cb3b2",
+                "itemId": "2",
+                "itemName": "Sports Watch 2",
+                "price": 100,
+                "currency": "EUR"
               }
-            },
-            "404": {
-              "description": "404 Not Found"
-            },
-            "500": {
-              "description": "500 Internal Server Error"
             }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
           }
         }
       },
-    "consumes": [
-      "application/json"
-    ]
-  }
+      "delete": {
+        "operationId": "removeItem",
+        "summary": "Removes an item",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "itemId",
+            "required": true,
+            "type": "string",
+            "description": "Item's ID"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "examples": {
+              "application/json": {
+                "Status": "Successfully deleted"
+              }
+            }
+          },
+          "404": {
+            "description": "404 Not Found"
+          },
+          "500": {
+            "description": "500 Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "/catalog/item/{itemId}": {
+    "get": {
+      "operationId": "retrieveItem",
+      "summary": "Retrieves an item by its ID",
+      "parameters": [
+        {
+          "in": "path",
+          "name": "categoryId",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          },
+          "description": "Category's ID"
+        },
+        {
+          "in": "path",
+          "name": "itemId",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "Item's ID"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "200 OK",
+          "examples": {
+            "application/json": {
+              "itemId": "item-identifier-1",
+              "itemName": "Volkswagen Polo",
+              "price": 150000,
+              "currency": "EUR"
+            }
+          }
+        },
+        "404": {
+          "description": "404 Not Found"
+        },
+        "500": {
+          "description": "500 Internal Server Error"
+        }
+      }
+    }
+  },
+  "consumes": [
+    "application/json"
+  ]
+}
