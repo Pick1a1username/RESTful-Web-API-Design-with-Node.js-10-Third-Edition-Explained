@@ -4,11 +4,12 @@ services:
 
   pymongo:
     image: pymongo:0.1
-    restart: always
+    restart: on-failure
     volumes:
       - ../db-helper/db-helper.py:/app/db-helper.py
       - ../db-helper/data.json:/app/data.json
-    command: tail -f /dev/null
+    working_dir: /app
+    command: ./db-helper.py
 
   node:
     image: node:10-jessie

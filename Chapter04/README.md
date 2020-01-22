@@ -18,15 +18,6 @@ Start containers by `docker-compose`:
 $ docker-compose -f docker/docker-compose-test.yaml 
 ```
 
-Bootstrap DB:
-
-```
-$ docker exec -it docker_pymongo_1 bash
-# cd /app
-# ./db-helper.py
-# exit
-```
-
 Run app:
 
 ```
@@ -52,15 +43,6 @@ Start containers by `docker-compose`:
 $ docker-compose -f docker/docker-compose-test.yaml 
 ```
 
-Bootstrap DB:
-
-```
-$ docker exec -it docker_pymongo_1 bash
-# cd /app
-# ./db-helper.py
-# exit
-```
-
 Run test (there are two kinds of test):
 
 ```
@@ -78,15 +60,14 @@ $ docker exec -it docker_node_1 bash
 | `Get`    | `/catalog`                | Retrieves all available categories in the catalog.           |
 | `Post`   | `/catalog`                | Saves or updates an item.                                    |
 | `Put`    | `/catalog`                | Saves or updates an item.                                    |
-| `Get`    | `/catalog/item/{itemId}` | Retrieves an item by its ID.                                 |
-| `Delete` | `/catalog/item/{itemId}`         | Removes an item               
-| `Get`    | `/catalog/{categoryName}`  | Retrieves all the items available under a specific category. |
-                               |
+| `Get`    | `/catalog/item/{itemId}`  | Retrieves an item by its ID.                                 |
+| `Delete` | `/catalog/item/{itemId}`  | Removes an item                                              |
+| `Get`    | `/catalog/{categoryName}` | Retrieves all the items available under a specific category. |
+
 
 
 ## Swagger UI
 
 ## Notes
-
 
 * `bin/www` is included for the ease of test.
