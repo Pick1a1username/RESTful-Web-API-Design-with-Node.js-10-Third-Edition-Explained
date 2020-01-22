@@ -4,6 +4,38 @@
 
 ## Starting App
 
+Build a Docker image for db-helper:
+
+```
+$ cd db-helper
+$ docker build -t pymongo:0.1 .
+$ cd ..
+```
+
+Start containers by `docker-compose`:
+
+```
+$ docker-compose -f docker/docker-compose-test.yaml 
+```
+
+Bootstrap DB:
+
+```
+$ docker exec -it docker_pymongo_1 bash
+# cd /app
+# ./db-helper.py
+# exit
+```
+
+Run app:
+
+```
+$ docker exec -it docker_node_1 bash
+# cd /root/app
+# npm start
+# exit
+```
+
 ## Testing App
 
 Build a Docker image for db-helper if you haven't done yet:
@@ -29,13 +61,13 @@ $ docker exec -it docker_pymongo_1 bash
 # exit
 ```
 
-Run test:
+Run test (there are two kinds of test):
 
 ```
 $ docker exec -it docker_node_1 bash
 # cd /root/app
-# npm start
-# exit
+# npm test
+# ./node_modules/.bin/mocha test/routes-test.js
 ```
 
 
@@ -46,9 +78,9 @@ $ docker exec -it docker_node_1 bash
 | `Get`    | `/catalog`                | Retrieves all available categories in the catalog.           |
 | `Post`   | `/catalog`                | Saves or updates an item.                                    |
 | `Put`    | `/catalog`                | Saves or updates an item.                                    |
-| `Get`    | `/catalog/item/{item-id}` | Retrieves an item by its ID.                                 |
-| `Delete` | `/catalog/item/{item-id}`         | Removes an item               
-| `Get`    | `/catalog/{category}`  | Retrieves all the items available under a specific category. |
+| `Get`    | `/catalog/item/{itemId}` | Retrieves an item by its ID.                                 |
+| `Delete` | `/catalog/item/{itemId}`         | Removes an item               
+| `Get`    | `/catalog/{categoryName}`  | Retrieves all the items available under a specific category. |
                                |
 
 

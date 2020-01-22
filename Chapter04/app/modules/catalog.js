@@ -41,7 +41,6 @@ exports.findItemById = function (itemId, response) {
 				response.setHeader('Content-Type', 'application/json');
 				response.send(result);
 			}
-			console.log(result);
 		}
 	});
 }
@@ -110,7 +109,7 @@ exports.saveItem = function(request, response)
 };
 
 exports.remove = function (request, response) {
-	console.log('Deleting item with id: '	+ request.body.itemId);
+	console.log('Deleting item with id: '	+ request.params.itemId);
 	CatalogItem.findOne({itemId: request.params.itemId}, function(error, data) {
 		if (error) {
 			console.log(error);

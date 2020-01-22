@@ -11,7 +11,6 @@ mongoose.createConnection('mongodb://catalog_admin:some_password@mongo/catalog')
 chai.use(chaiHttp);
 
 
-// Work in progress
 describe('/get', function() {
     it('get all items', function(done) {
         chai.request(expressApp)
@@ -35,7 +34,10 @@ describe('/get', function() {
         });
     });
 
-    // Work in progress
+    /**
+     * This test may fail sometimes because the target item selected can be
+     * the item created temporarily.
+     */
     it('get an specific item', function(done) {
 
         let targetItem = {};
@@ -46,18 +48,18 @@ describe('/get', function() {
             .end(function(error, response) {
                 if ( response.body.length > 0 ) {
                     targetItem = response.body[0];
-                    console.log(targetItem);
-                }
-        });
+                    chai.request(expressApp)
+                        .get(`/catalog/item/${targetItem.itemId}`)
+                        .end(function(error, response) {
+                            should.equal(200  , response.status);
 
-        chai.request(expressApp)
-            .get(`/catalog/item/${targetItem.itemId}`)
-            .end(function(error, response) {
-                // This callback should be executed after getting targetItem!!!
-                should.equal(200  , response.status);
-                expect(response.body).is.an('array').with.lengthOf(1);
-                expect(response.body[0].itemId).to.equal(targetItem.itemId);
-                done();
+                            expect(response.body).is.an('object');
+                            expect(response.body.itemId).to.equal(targetItem.itemId);
+                            done();
+                    });
+                } else {
+                    throw new Error('No item exists for test');
+                }
         });
     });
 });
@@ -66,48 +68,76 @@ describe('/get', function() {
 describe('/post', function() {
     it('post test', function(done) {
         var item = {
-            "itemId":19,
+            "itemId": 22,
             "itemName": "Sports Watch 10",
             "price": 100,
             "currency": "USD",
-            "__v": 0,
             "categories": [
                 "Watches",
                 "Sports Watches"
             ]
         };
     
-    chai.request(expressApp)
-        .post('/catalog')
-        .send(item )
-        .end(function(err, response){
-            should.equal(201, response.status);
-            done();
+        chai.request(expressApp)
+            .post('/catalog')
+            .send(item )
+            .end(function(err, response){
+                should.equal(201, response.status);
+                done();
         });
     });
 });
 
-// Work in progress
-describe('/delete', function() {
-    it('delete test', function(done) {
-        var item ={
-        "itemId":19,
+
+describe('/put', function() {
+    it('put test', function(done) {
+        var item = {
+            "itemId": 23,
             "itemName": "Sports Watch 10",
             "price": 100,
             "currency": "USD",
-            "__v": 0,
             "categories": [
                 "Watches",
                 "Sports Watches"
             ]
         };
-
+    
         chai.request(expressApp)
-            .delete('/catalog/item/19')
+            .put('/catalog')
             .send(item )
             .end(function(err, response){
-                should.equal(200, response.status)
-            done();
+                should.equal(201, response.status);
+                done();
+        });
+    });
+});
+
+
+describe('/delete', function() {
+    it('delete test', function(done) {
+        var item ={
+            "itemId":211,
+                "itemName": "Sports Watch 10",
+                "price": 10000,
+                "currency": "USD",
+                "categories": [
+                    "Watches",
+                    "Sports Watches"
+                ]
+            };
+
+        chai.request(expressApp)
+            .post('/catalog')
+            .send(item)
+            .end(function(err, response){
+                should.equal(201, response.status);
+
+                chai.request(expressApp)
+                    .delete(`/catalog/item/${item.itemId}`)
+                    .end(function(err, response){
+                        should.equal(200, response.status);
+                        done();
+                });
         });
     });
 });
