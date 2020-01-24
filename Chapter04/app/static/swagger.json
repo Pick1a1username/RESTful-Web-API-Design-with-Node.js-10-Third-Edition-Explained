@@ -21,7 +21,6 @@
                   "categories": [
                     "Watches"
                   ],
-                  "_id": "5e259f8d051ed2bbd94cb3b0",
                   "itemId": "3",
                   "itemName": "Sports Watch 11",
                   "price": 99,
@@ -32,7 +31,6 @@
                     "Watches",
                     "Sports Watches"
                   ],
-                  "_id": "5e259f8d051ed2bbd94cb3b1",
                   "itemId": "9",
                   "itemName": "Sports Watch 4",
                   "price": 100,
@@ -216,7 +214,6 @@
                     "Watches",
                     "Sports Watches"
                   ],
-                  "_id": "5e259f8d051ed2bbd94cb3b1",
                   "itemId": "9",
                   "itemName": "Sports Watch 4",
                   "price": 100,
@@ -227,7 +224,6 @@
                     "Watches",
                     "Sports Watches"
                   ],
-                  "_id": "5e259f8d051ed2bbd94cb3b2",
                   "itemId": "2",
                   "itemName": "Sports Watch 2",
                   "price": 100,
@@ -316,54 +312,6 @@
           "500": {
             "description": "500 Internal Server Error"
           }
-        }
-      }
-    }
-  },
-  "/catalog/item/{itemId}": {
-    "get": {
-      "operationId": "retrieveItem",
-      "summary": "Retrieves an item by its ID",
-      "parameters": [
-        {
-          "in": "path",
-          "name": "categoryId",
-          "required": true,
-          "schema": {
-            "type": "integer"
-          },
-          "description": "Category's ID"
-        },
-        {
-          "in": "path",
-          "name": "itemId",
-          "required": true,
-          "schema": {
-            "type": "string"
-          },
-          "description": "Item's ID"
-        }
-      ],
-      "produces": [
-        "application/json"
-      ],
-      "responses": {
-        "200": {
-          "description": "200 OK",
-          "examples": {
-            "application/json": {
-              "itemId": "item-identifier-1",
-              "itemName": "Volkswagen Polo",
-              "price": 150000,
-              "currency": "EUR"
-            }
-          }
-        },
-        "404": {
-          "description": "404 Not Found"
-        },
-        "500": {
-          "description": "500 Internal Server Error"
         }
       }
     }
