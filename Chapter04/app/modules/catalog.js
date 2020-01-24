@@ -79,30 +79,29 @@ exports.saveItem = function(request, response)
 				} else {
 					console.log(error);
 					CatalogItem.findOne({itemId : item.itemId	},
-									(error, result) => {
-										console.log('Check if such an item exists');
-										if (error) {
-											console.log(error);
-											response.writeHead(500, contentTypePlainText);
-											response.end('Internal Server Error');
-										} else {
-											if (!result) {
-												console.log('Item does not exist. Creating a new one');
-												item.save();
-												response.writeHead(201, contentTypeJson);
-												response.
-												response.end(JSON.stringify(request.body));
-											} else {
-												console.log('Updating existing item');
-												result.itemId = item.itemId;
-												result.itemName = item.itemName;
-												result.price = item.price;
-												result.currency = item.currency;
-												result.categories = item.categories;
-												result.save();
-												response.json(JSON.stringify(result));
-											}
-									}
+						(error, result) => {
+							console.log('Check if such an item exists');
+							if (error) {
+								console.log(error);
+								response.writeHead(500, contentTypePlainText);
+								response.end('Internal Server Error');
+							} else {
+								if (!result) {
+									console.log('Item does not exist. Creating a new one');
+									item.save();
+									response.writeHead(201, contentTypeJson);
+									response.end(JSON.stringify(request.body));
+								} else {
+									console.log('Updating existing item');
+									result.itemId = item.itemId;
+									result.itemName = item.itemName;
+									result.price = item.price;
+									result.currency = item.currency;
+									result.categories = item.categories;
+									result.save();
+									response.json(JSON.stringify(result));
+								}
+							}
 					});
 				}
 		});

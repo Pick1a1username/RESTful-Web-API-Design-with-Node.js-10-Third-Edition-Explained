@@ -21,6 +21,7 @@
                   "categories": [
                     "Watches"
                   ],
+                  "_id": "5e2a45c2a55e70a2b32c03ce",
                   "itemId": "3",
                   "itemName": "Sports Watch 11",
                   "price": 99,
@@ -31,6 +32,7 @@
                     "Watches",
                     "Sports Watches"
                   ],
+                  "_id": "5e2a45c2a55e70a2b32c03cf",
                   "itemId": "9",
                   "itemName": "Sports Watch 4",
                   "price": 100,
@@ -97,16 +99,16 @@
           "200": {
             "description": "200 OK",
             "examples": {
-              "application/json": [
-                {
-                  "categoryId": "1",
-                  "categoryName": "Watches"
-                },
-                {
-                  "categoryId": "2",
-                  "categoryName": "Cars"
-                }
-              ]
+              "application/json": { 
+                "itemId" : 23,
+                "itemName" : "Sports Watch 10",
+                "price" : "100",
+                "currency" : "USD",
+                "categories" : [ 
+                   "Watches",
+                   "Sports Watches"
+                ]
+              }
             }
           },
           "404": {
@@ -167,17 +169,17 @@
           "200": {
             "description": "200 OK",
             "examples": {
-              "application/json": [
-                {
-                  "categoryId": "1",
-                  "categoryName": "Watches"
-                },
-                {
-                  "categoryId": "2",
-                  "categoryName": "Cars"
-                }
-              ]
-            }
+              "application/json": { 
+                "itemId" : 23,
+                "itemName" : "Sports Watch 10",
+                "price" : "100",
+                "currency" : "USD",
+                "categories" : [ 
+                   "Watches",
+                   "Sports Watches"
+                ]
+              }
+            }  
           },
           "404": {
             "description": "404 Not Found"
@@ -214,6 +216,7 @@
                     "Watches",
                     "Sports Watches"
                   ],
+                  "_id": "5e2a45c2a55e70a2b32c03cf",
                   "itemId": "9",
                   "itemName": "Sports Watch 4",
                   "price": 100,
@@ -224,6 +227,7 @@
                     "Watches",
                     "Sports Watches"
                   ],
+                  "_id": "5e2a45c2a55e70a2b32c03d0",
                   "itemId": "2",
                   "itemName": "Sports Watch 2",
                   "price": 100,
@@ -266,7 +270,7 @@
                   "Watches",
                   "Sports Watches"
                 ],
-                "_id": "5e259f8d051ed2bbd94cb3b2",
+                "_id": "5e2a45c2a55e70a2b32c03d0",
                 "itemId": "2",
                 "itemName": "Sports Watch 2",
                 "price": 100,
