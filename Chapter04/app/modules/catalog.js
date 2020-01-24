@@ -99,7 +99,7 @@ exports.saveItem = function(request, response)
 									result.currency = item.currency;
 									result.categories = item.categories;
 									result.save();
-									response.json(JSON.stringify(result));
+									response.end(JSON.stringify(request.body));
 								}
 							}
 					});

@@ -66,8 +66,8 @@ describe('/get', function() {
 
 
 describe('/post', function() {
-    it('post test', function(done) {
-        var item = {
+    it('post test(create)', function(done) {
+        let item = {
             "itemId": 22,
             "itemName": "Sports Watch 10",
             "price": 100,
@@ -82,8 +82,49 @@ describe('/post', function() {
             .post('/catalog')
             .send(item )
             .end(function(err, response){
-                should.equal(201, response.status);
+                should.equal(response.status, 201);
                 done();
+        });
+    });
+
+    it('post test(update)', function(done) {
+        let itemBefore = {
+            "itemId": 40,
+            "itemName": "Sports Watch 10",
+            "price": 100,
+            "currency": "USD",
+            "categories": [
+                "Watches",
+                "Sports Watches"
+            ]
+        };
+
+        let itemAfter = {
+            "itemId": 40,
+            "itemName": "Sports Watch 10",
+            "price": 10000,
+            "currency": "USD",
+            "categories": [
+                "Watches",
+                "Sports Watches"
+            ]
+        };
+    
+        chai.request(expressApp)
+            .post('/catalog')
+            .send(itemBefore)
+            .end(function(err, response){
+                should.equal(response.status, 201);
+                chai.request(expressApp)
+                    .post('/catalog')
+                    .send(itemAfter)
+                    .end(function(err, response){
+                        should.equal(response.status, 200);
+                        expect(response.body).is.an('object');
+                        console.log(response.body);
+                        expect(response.body.itemId).to.equal(itemAfter.itemId);
+                        done();
+                });
         });
     });
 });
