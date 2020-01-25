@@ -68,7 +68,7 @@ describe('/get', function() {
 describe('/post', function() {
     it('post test(create)', function(done) {
         let item = {
-            "itemId": 22,
+            "itemId": 100,
             "itemName": "Sports Watch 10",
             "price": 100,
             "currency": "USD",
@@ -89,7 +89,7 @@ describe('/post', function() {
 
     it('post test(update)', function(done) {
         let itemBefore = {
-            "itemId": 40,
+            "itemId": 101,
             "itemName": "Sports Watch 10",
             "price": 100,
             "currency": "USD",
@@ -100,7 +100,7 @@ describe('/post', function() {
         };
 
         let itemAfter = {
-            "itemId": 40,
+            "itemId": 101,
             "itemName": "Sports Watch 10",
             "price": 10000,
             "currency": "USD",
@@ -121,18 +121,17 @@ describe('/post', function() {
                     .end(function(err, response){
                         should.equal(response.status, 200);
                         expect(response.body).is.an('object');
-                        console.log(response.body);
                         expect(response.body.itemId).to.equal(itemAfter.itemId);
                         done();
                 });
         });
     });
 
-    after('after...', (done) => {
+    after('clean data', (done) => {
         const removeItemForCreate = chai.request(expressApp)
-            .delete(`/catalog/item/22`);
+            .delete('/catalog/item/100');
         const removeItemForUpdate = chai.request(expressApp)
-            .delete(`/catalog/item/40`);
+            .delete('/catalog/item/101');
 
         Promise.all([removeItemForCreate, removeItemForUpdate])
             .then( () => {
@@ -141,15 +140,14 @@ describe('/post', function() {
             .catch(error => { 
                 console.error(error.message)
             });
-
     });
 });
 
 
 describe('/put', function() {
-    it('put test', function(done) {
-        var item = {
-            "itemId": 23,
+    it('put test(create)', function(done) {
+        let item = {
+            "itemId": 200,
             "itemName": "Sports Watch 10",
             "price": 100,
             "currency": "USD",
@@ -163,11 +161,67 @@ describe('/put', function() {
             .put('/catalog')
             .send(item )
             .end(function(err, response){
-                should.equal(201, response.status);
+                should.equal(response.status, 201);
                 done();
         });
     });
+
+    it('put test(update)', function(done) {
+        let itemBefore = {
+            "itemId": 201,
+            "itemName": "Sports Watch 10",
+            "price": 100,
+            "currency": "USD",
+            "categories": [
+                "Watches",
+                "Sports Watches"
+            ]
+        };
+
+        let itemAfter = {
+            "itemId": 201,
+            "itemName": "Sports Watch 10",
+            "price": 10000,
+            "currency": "USD",
+            "categories": [
+                "Watches",
+                "Sports Watches"
+            ]
+        };
+    
+        chai.request(expressApp)
+            .put('/catalog')
+            .send(itemBefore)
+            .end(function(err, response){
+                should.equal(response.status, 201);
+                chai.request(expressApp)
+                    .put('/catalog')
+                    .send(itemAfter)
+                    .end(function(err, response){
+                        should.equal(response.status, 200);
+                        expect(response.body).is.an('object');
+                        expect(response.body.itemId).to.equal(itemAfter.itemId);
+                        done();
+                });
+        });
+    });
+
+    after('clean data', (done) => {
+        const removeItemForCreate = chai.request(expressApp)
+            .delete('/catalog/item/200');
+        const removeItemForUpdate = chai.request(expressApp)
+            .delete('/catalog/item/201');
+
+        Promise.all([removeItemForCreate, removeItemForUpdate])
+            .then( () => {
+                done();
+            })
+            .catch(error => { 
+                console.error(error.message)
+            });
+    });
 });
+
 
 
 describe('/delete', function() {
