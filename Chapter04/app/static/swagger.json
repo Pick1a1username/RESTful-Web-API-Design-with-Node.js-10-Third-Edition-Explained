@@ -97,7 +97,22 @@
         ],
         "responses": {
           "200": {
-            "description": "200 OK",
+            "description": "200 if the item has been updated",
+            "examples": {
+              "application/json": { 
+                "itemId" : 23,
+                "itemName" : "Sports Watch 10",
+                "price" : "100",
+                "currency" : "USD",
+                "categories" : [ 
+                   "Watches",
+                   "Sports Watches"
+                ]
+              }
+            }
+          },
+          "201": {
+            "description": "200 if the item has been created",
             "examples": {
               "application/json": { 
                 "itemId" : 23,
@@ -167,7 +182,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 OK",
+            "description": "200 if the item has been updated",
             "examples": {
               "application/json": { 
                 "itemId" : 23,
@@ -179,7 +194,22 @@
                    "Sports Watches"
                 ]
               }
-            }  
+            }
+          },
+          "201": {
+            "description": "200 if the item has been created",
+            "examples": {
+              "application/json": { 
+                "itemId" : 23,
+                "itemName" : "Sports Watch 10",
+                "price" : "100",
+                "currency" : "USD",
+                "categories" : [ 
+                   "Watches",
+                   "Sports Watches"
+                ]
+              }
+            }
           },
           "404": {
             "description": "404 Not Found"
