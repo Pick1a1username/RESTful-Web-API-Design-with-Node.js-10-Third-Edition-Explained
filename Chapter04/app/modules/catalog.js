@@ -99,7 +99,6 @@ exports.saveItem = function(request, response)
 									result.currency = item.currency;
 									result.categories = item.categories;
 									result.save();
-									console.log(request.body);
 									response.writeHead(200, contentTypeJson);
 									response.end(JSON.stringify(request.body));
 								}
