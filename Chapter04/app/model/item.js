@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/catalog');
+mongoose.connect('mongodb://catalog_admin:some_password@mongo/catalog');
 
 var itemSchema = new Schema ({
     "itemId" : {type: String, index: {unique: true}},
