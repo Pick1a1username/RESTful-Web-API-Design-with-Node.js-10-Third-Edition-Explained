@@ -1,12 +1,8 @@
 var expressApp = require('../app');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
-var mongoose = require('mongoose');
 var should = chai.should();
 const expect = chai.expect;
-
-
-mongoose.createConnection('mongodb://catalog_admin:some_password@mongo/catalog');
 
 chai.use(chaiHttp);
 
