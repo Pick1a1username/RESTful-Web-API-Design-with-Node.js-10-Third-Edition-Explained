@@ -127,6 +127,22 @@ describe('/post', function() {
                 });
         });
     });
+
+    after('after...', (done) => {
+        const removeItemForCreate = chai.request(expressApp)
+            .delete(`/catalog/item/22`);
+        const removeItemForUpdate = chai.request(expressApp)
+            .delete(`/catalog/item/40`);
+
+        Promise.all([removeItemForCreate, removeItemForUpdate])
+            .then( () => {
+                done();
+            })
+            .catch(error => { 
+                console.error(error.message)
+            });
+
+    });
 });
 
 
