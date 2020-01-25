@@ -15,7 +15,7 @@ $ cd ..
 Start containers by `docker-compose`:
 
 ```
-$ docker-compose -f docker/docker-compose-test.yaml 
+$ docker-compose -f docker/docker-compose.yaml 
 ```
 
 Run app:
@@ -40,7 +40,7 @@ $ cd ..
 Start containers by `docker-compose`:
 
 ```
-$ docker-compose -f docker/docker-compose-test.yaml 
+$ docker-compose -f docker/docker-compose.yaml 
 ```
 
 Run test (there are two kinds of test):
@@ -49,7 +49,7 @@ Run test (there are two kinds of test):
 $ docker exec -it docker_node_1 bash
 # cd /root/app
 # npm test
-# ./node_modules/.bin/mocha test/routes-test.js
+# ./node_modules/.bin/mocha test/routes-test.js --exit
 ```
 
 
