@@ -2,6 +2,8 @@
 
 ## Introduction
 
+This chapter has several parts which are not fully explained. So Just go to Chapter 6 after reading Chapter 5 in the textbook.
+
 ## Starting App
 
 Build a Docker image for db-helper:
