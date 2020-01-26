@@ -2,7 +2,7 @@
 
 ## Introduction
 
-## Starting App (WIP)
+## Starting App
 
 Build a Docker image for db-helper:
 
